@@ -1,5 +1,4 @@
 import os
-from distutils.util import strtobool
 
 import supervisely as sly
 from dotenv import load_dotenv
@@ -11,10 +10,12 @@ if sly.is_development():
 
 api = sly.Api.from_env()
 
+TASK_ID = sly.env.task_id()
 TEAM_ID = sly.env.team_id()
 WORKSPACE_ID = sly.env.workspace_id()
 PROJECT_ID = sly.env.project_id()
-DATASET_ID = sly.env.dataset_id(raise_not_found=False)
+# DATASET_ID = sly.env.dataset_id(raise_not_found=False)
+DATASET_ID = None
 
 SUPPORTED_GEOMETRY_TYPES = [
     sly.AnyGeometry,
@@ -27,5 +28,5 @@ SUPPORTED_GEOMETRY_TYPES = [
 app = sly.Application()
 
 STORAGE_DIR = sly.app.get_data_dir()
-PROJECT_DIR = os.path.join(STORAGE_DIR, "DOTA")
+PROJECT_DIR = os.path.join(STORAGE_DIR, "dota")
 mkdir(PROJECT_DIR, True)

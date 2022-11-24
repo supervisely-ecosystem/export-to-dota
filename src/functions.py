@@ -1,11 +1,17 @@
+import os
 from typing import List
 
-import os
 import cv2
 import numpy as np
 import supervisely as sly
 
-from src.globals import SUPPORTED_GEOMETRY_TYPES
+from src.globals import (
+    PROJECT_DIR,
+    STORAGE_DIR,
+    SUPPORTED_GEOMETRY_TYPES,
+    TASK_ID,
+    TEAM_ID,
+)
 
 
 def convert_obj_classes_to_poly(project_meta: sly.ProjectMeta):
@@ -33,16 +39,14 @@ def get_anns_list(api: sly.Api, ds_id: int, project_meta: sly.ProjectMeta):
 
 
 def convert_sly_to_dota(
-    anns_paths: List[str], anns: List[sly.Annotation], dst_project_meta: sly.ProjectMeta
+    anns_paths: List[str], anns: List[sly.Annotation], project_meta: sly.ProjectMeta
 ):
-    ro_bbox_anns = []
     for ann, ann_path in zip(anns, anns_paths):
         file = open(ann_path, "w")
         for label in ann.labels:
             if type(label.geometry) not in SUPPORTED_GEOMETRY_TYPES:
                 continue
-
-            ro_bbox_line = label_to_ro_bbox(label=label, project_meta=dst_project_meta)
+            ro_bbox_line = label_to_ro_bbox(label=label, project_meta=project_meta)
             file.write(f"{ro_bbox_line}\n")
 
 
@@ -56,7 +60,6 @@ def label_to_ro_bbox(label: sly.Label, project_meta: sly.ProjectMeta):
         label = sly.Label(geometry=new_geometry, obj_class=ro_bbox_obj_class)
 
     poly_ext = label.geometry.exterior
-
     points = []
     for coord in poly_ext:
         coords = np.array([coord.col, coord.row])
@@ -79,6 +82,37 @@ def label_to_ro_bbox(label: sly.Label, project_meta: sly.ProjectMeta):
         coords[3][0],
     )
 
-    line = f"{x1} {y1} {x2} {y2} {x3} {y3} {x4} {y4} {orig_label_name} 0"
+    ann_line = f"{x1} {y1} {x2} {y2} {x3} {y3} {x4} {y4} {orig_label_name} 0"
+    return ann_line
 
-    return line
+
+def upload_project_to_tf(api, project):
+    full_archive_name = f"{str(project.id)}_{project.name}.tar"
+    result_archive = os.path.join(STORAGE_DIR, full_archive_name)
+    sly.fs.archive_directory(PROJECT_DIR, result_archive)
+    sly.logger.info("Result directory is archived")
+    upload_progress = []
+    remote_archive_path = f"/export-to-dota/{TASK_ID}_{full_archive_name}"
+
+    def _print_progress(monitor, upload_progress):
+        if len(upload_progress) == 0:
+            upload_progress.append(
+                sly.Progress(
+                    message="Upload {!r}".format(full_archive_name),
+                    total_cnt=monitor.len,
+                    ext_logger=sly.logger,
+                    is_size=True,
+                )
+            )
+        upload_progress[0].set_current_value(monitor.bytes_read)
+
+    file_info = api.file.upload(
+        TEAM_ID,
+        result_archive,
+        remote_archive_path,
+        lambda m: _print_progress(m, upload_progress),
+    )
+    sly.logger.info(f"Uploaded to Team-Files: '{file_info.storage_path}'")
+    api.task.set_output_archive(
+        TASK_ID, file_info.id, full_archive_name, file_url=file_info.storage_path
+    )
