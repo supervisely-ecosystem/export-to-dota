@@ -43,6 +43,7 @@ def convert_sly_to_dota(
 ):
     for ann, ann_path in zip(anns, anns_paths):
         file = open(ann_path, "w")
+        file.write("imagesource:imagesource\ngsd:None\n")
         for label in ann.labels:
             if type(label.geometry) not in SUPPORTED_GEOMETRY_TYPES:
                 continue
@@ -72,14 +73,14 @@ def label_to_ro_bbox(label: sly.Label, project_meta: sly.ProjectMeta):
 
     coords = [[coord[1], coord[0]] for coord in rot_box]
     x1, y1, x2, y2, x3, y3, x4, y4 = (
-        coords[0][1],
-        coords[0][0],
-        coords[1][1],
-        coords[1][0],
-        coords[2][1],
-        coords[2][0],
-        coords[3][1],
-        coords[3][0],
+        float(coords[0][1]),
+        float(coords[0][0]),
+        float(coords[1][1]),
+        float(coords[1][0]),
+        float(coords[2][1]),
+        float(coords[2][0]),
+        float(coords[3][1]),
+        float(coords[3][0]),
     )
 
     ann_line = f"{x1} {y1} {x2} {y2} {x3} {y3} {x4} {y4} {orig_label_name} 0"
