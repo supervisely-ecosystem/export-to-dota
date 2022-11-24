@@ -1,0 +1,6 @@
+venv
+.venv
+
+src/__pycache__
+src/debug
+original_DOTA
