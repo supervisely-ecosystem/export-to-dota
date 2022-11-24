@@ -14,8 +14,7 @@ TASK_ID = sly.env.task_id()
 TEAM_ID = sly.env.team_id()
 WORKSPACE_ID = sly.env.workspace_id()
 PROJECT_ID = sly.env.project_id()
-# DATASET_ID = sly.env.dataset_id(raise_not_found=False)
-DATASET_ID = None
+DATASET_ID = sly.env.dataset_id(raise_not_found=False)
 
 SUPPORTED_GEOMETRY_TYPES = [
     sly.AnyGeometry,
