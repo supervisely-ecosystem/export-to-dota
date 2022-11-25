@@ -62,22 +62,22 @@ App can be launched from ecosystem, images project or images dataset
 
 **Step 1.** Run the app from Ecosystem
 
-<img src="https://user-images.githubusercontent.com/115161827/203979491-9bd59979-e8c9-4803-920d-d61460ed2080.jpg" width="80%" style='padding-top: 10px'>  
+<img src="https://user-images.githubusercontent.com/115161827/203999489-57154128-ae87-4813-a2c8-560ce6614ed4.jpg" width="80%" style='padding-top: 10px'>  
 
 **Step 2.** Select input project or dataset and press the Run button
 
-<img src="https://user-images.githubusercontent.com/115161827/203979469-e8946f07-b659-47b0-8932-ddb44fb29bba.gif" width="80%" style='padding-top: 10px'>
+<img src="https://user-images.githubusercontent.com/115161827/203999453-a36b56c9-5be5-475f-b075-3f02461c7503.gif" width="80%" style='padding-top: 10px'>
 
 ## Run from Images Project or Dataset
 
 **Step 1.** Run the application from the context menu of the Images Project or Dataset
 
-<img src="https://user-images.githubusercontent.com/115161827/203980155-b7bcc1fe-1391-4fdb-a351-ad41e1611627.png" width="80%" style='padding-top: 10px'>  
+<img src="https://user-images.githubusercontent.com/115161827/203999520-b935e4a5-f06f-4e87-afef-09fb82026a9e.png" width="80%" style='padding-top: 10px'>  
 
 **Step 2.** Press the Run button
 
-<img src="https://user-images.githubusercontent.com/115161827/203980165-aa9d0f66-a26c-4293-8caa-8f31710f3f42.png" width="80%" style='padding-top: 10px'>
+<img src="https://user-images.githubusercontent.com/115161827/203999543-d85c56bb-de1b-4ec2-a00a-6ecc95d3f408.png" width="80%" style='padding-top: 10px'>
 
 ## Result
 
-<img src="https://user-images.githubusercontent.com/115161827/203984216-7306f3f0-4702-492d-876f-1aee053f62e2.jpg" width="80%" style='padding-top: 10px'>
+<img src="https://user-images.githubusercontent.com/115161827/203999558-b427801a-8e84-4064-a6a9-0925e4dd6c58.jpg" width="80%" style='padding-top: 10px'>
