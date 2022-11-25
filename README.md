@@ -1,6 +1,6 @@
 
 <div align="center" markdown>
-<img src="https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"/>  
+<img src="https://user-images.githubusercontent.com/115161827/203991599-1d8ded37-f6dd-40dc-bb19-53434a173114.jpg"/>  
 
 # Export to DOTA
 
@@ -59,22 +59,22 @@ App can be launched from ecosystem, images project or images dataset
 
 **Step 1.** Run the app from Ecosystem
 
-<img src="" width="80%" style='padding-top: 10px'>  
+<img src="https://user-images.githubusercontent.com/115161827/203979491-9bd59979-e8c9-4803-920d-d61460ed2080.jpg" width="80%" style='padding-top: 10px'>  
 
 **Step 2.** Select input project or dataset and press the Run button
 
-<img src="" width="80%" style='padding-top: 10px'>
+<img src="https://user-images.githubusercontent.com/115161827/203979469-e8946f07-b659-47b0-8932-ddb44fb29bba.gif" width="80%" style='padding-top: 10px'>
 
 ## Run from Images Project or Dataset
 
 **Step 1.** Run the application from the context menu of the Images Project or Dataset
 
-<img src="" width="80%" style='padding-top: 10px'>  
+<img src="https://user-images.githubusercontent.com/115161827/203980155-b7bcc1fe-1391-4fdb-a351-ad41e1611627.png" width="80%" style='padding-top: 10px'>  
 
 **Step 2.** Press the Run button
 
-<img src="" width="80%" style='padding-top: 10px'>
+<img src="https://user-images.githubusercontent.com/115161827/203980165-aa9d0f66-a26c-4293-8caa-8f31710f3f42.png" width="80%" style='padding-top: 10px'>
 
 ## Result
 
-<img src="Image of Workspace tasks with result output archive" width="80%" style='padding-top: 10px'>
+<img src="https://user-images.githubusercontent.com/115161827/203984216-7306f3f0-4702-492d-876f-1aee053f62e2.jpg" width="80%" style='padding-top: 10px'>
