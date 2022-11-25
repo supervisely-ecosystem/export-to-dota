@@ -1,6 +1,6 @@
 
 <div align="center" markdown>
-<img src="https://user-images.githubusercontent.com/115161827/203991599-1d8ded37-f6dd-40dc-bb19-53434a173114.jpg"/>  
+<img src="https://user-images.githubusercontent.com/115161827/203993840-5a170216-d7a2-4e45-a74a-4b4c856e5b2f.jpg"/>  
 
 # Export to DOTA
 
