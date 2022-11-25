@@ -13,11 +13,14 @@
 
 # Overview
 
-Converts [Supervisely](https://docs.supervise.ly/data-organization/00_ann_format_navi) format project to [DOTA](https://captain-whu.github.io/DOTA/dataset.html) and prepares downloadable archive.
+Converts project in [Supervisely](https://docs.supervise.ly/data-organization/00_ann_format_navi) format to [DOTA](https://captain-whu.github.io/DOTA/dataset.html) and prepares downloadable archive. 
+
+DOTA is [one of the formats](https://github.com/open-mmlab/mmrotate/tree/main/tools/data#data-preparation-for-rotation-detection) supported by [mmrotate](https://github.com/open-mmlab/mmrotate) ![GitHub Org's stars](https://img.shields.io/github/stars/open-mmlab/mmrotate?style=social)
+
 
 ## Preparation
 
-Project object classes shapes must be: `Polygon`, `Bitmap`, `Line`, `Rectangle` or `Any Shape` with any of the mentioned shapes, all other shapes will be skipped. You can convert object classes shapes using [convert-class-shape](https://ecosystem.supervise.ly/apps/convert-class-shape) application.
+Project object classes shapes must be: `Polygon`, `Bitmap`, `Line`, `Rectangle` or `Any Shape` with any of the mentioned shapes, all other shapes will be ignored, and will not be presenting in resulted project. You can convert object classes shapes using [convert-class-shape](https://ecosystem.supervise.ly/apps/convert-class-shape) application.
 
 ## Output archive structure
 
