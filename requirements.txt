@@ -1,2 +1,2 @@
 black==22.6.0
-supervisely==6.68.28
+supervisely==6.68.109

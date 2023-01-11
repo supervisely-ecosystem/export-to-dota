@@ -93,7 +93,8 @@ def upload_project_to_tf(api, project):
     sly.fs.archive_directory(PROJECT_DIR, result_archive)
     sly.logger.info("Result directory is archived")
     upload_progress = []
-    remote_archive_path = f"/export-to-dota/{TASK_ID}_{full_archive_name}"
+    remote_archive_path = os.path.join(
+        sly.team_files.RECOMMENDED_EXPORT_PATH, f"export-to-dota/{TASK_ID}_{full_archive_name}")
 
     def _print_progress(monitor, upload_progress):
         if len(upload_progress) == 0:
