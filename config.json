@@ -1,25 +1,25 @@
 {
-  "name": "Export to DOTA",
-  "version": "2.0.0",
-  "headless": true,
-  "description": "Export images in DOTA format and prepares downloadable archive",
-  "categories": [
-    "images",
-    "export"
-  ],
-  "docker_image": "supervisely/base-py-sdk:6.72.55",
-  "icon": "https://user-images.githubusercontent.com/115161827/203991592-de444a0d-3d7c-4c26-b575-6fa4ac020635.jpg",
-  "icon_cover": true,
-  "poster": "https://user-images.githubusercontent.com/115161827/203993840-5a170216-d7a2-4e45-a74a-4b4c856e5b2f.jpg",
-  "context_menu": {
-    "context_root": "Download as",
-    "target": [
-      "images_project",
-      "images_dataset"
-    ]
-  },
-  "min_agent_version": "6.7.4",
-  "min_instance_version": "6.5.51",
-  "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000",
-  "port": 8000
+    "name": "Export to DOTA",
+    "version": "2.0.0",
+    "headless": true,
+    "description": "Export images in DOTA format and prepares downloadable archive",
+    "categories": [
+        "images",
+        "export"
+    ],
+    "docker_image": "supervisely/import-export:0.0.1",
+    "icon": "https://user-images.githubusercontent.com/115161827/203991592-de444a0d-3d7c-4c26-b575-6fa4ac020635.jpg",
+    "icon_cover": true,
+    "poster": "https://user-images.githubusercontent.com/115161827/203993840-5a170216-d7a2-4e45-a74a-4b4c856e5b2f.jpg",
+    "context_menu": {
+        "context_root": "Download as",
+        "target": [
+            "images_project",
+            "images_dataset"
+        ]
+    },
+    "min_agent_version": "6.7.4",
+    "min_instance_version": "6.5.51",
+    "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000",
+    "port": 8000
 }
