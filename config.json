@@ -7,7 +7,7 @@
         "images",
         "export"
     ],
-    "docker_image": "supervisely/import-export:0.0.5",
+    "docker_image": "supervisely/import-export:6.73.157",
     "icon": "https://user-images.githubusercontent.com/115161827/203991592-de444a0d-3d7c-4c26-b575-6fa4ac020635.jpg",
     "icon_cover": true,
     "poster": "https://user-images.githubusercontent.com/115161827/203993840-5a170216-d7a2-4e45-a74a-4b4c856e5b2f.jpg",
@@ -19,7 +19,7 @@
         ]
     },
     "min_agent_version": "6.7.4",
-    "min_instance_version": "6.5.51",
+    "min_instance_version": "6.10.0",
     "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000",
     "port": 8000
 }

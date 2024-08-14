@@ -10,6 +10,8 @@ from src.functions import (
     upload_project_to_tf,
 )
 from src.globals import DATASET_ID, PROJECT_DIR, PROJECT_ID, api, app
+import src.workflow as w
+
 
 project = api.project.get_info_by_id(id=PROJECT_ID)
 project_meta = sly.ProjectMeta.from_json(data=api.project.get_meta(id=PROJECT_ID))
@@ -17,8 +19,10 @@ project_meta = convert_obj_classes_to_poly(project_meta=project_meta)
 
 if DATASET_ID is not None:
     datasets = [api.dataset.get_info_by_id(id=DATASET_ID)]
+    w.workflow_input(api, DATASET_ID, type="dataset")
 else:
     datasets = api.dataset.get_list(project_id=PROJECT_ID)
+    w.workflow_input(api, PROJECT_ID, type="project")
 progress_ds = sly.Progress(message="Exporting datasets", total_cnt=len(datasets))
 for dataset in datasets:
     dataset_dir = os.path.join(PROJECT_DIR, dataset.name)
@@ -56,5 +60,6 @@ for dataset in datasets:
         progress_img.iters_done_report(len(batch_img_ids))
     progress_ds.iter_done_report()
 
-upload_project_to_tf(api, project)
+file_info = upload_project_to_tf(api, project)
+w.workflow_output(api, file_info)
 app.shutdown()
