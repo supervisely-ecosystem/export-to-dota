@@ -9,7 +9,7 @@ from src.functions import (
     get_anns_list,
     upload_project_to_tf,
 )
-from src.globals import DATASET_ID, PROJECT_DIR, PROJECT_ID, api, app
+from src.globals import DATASET_ID, PROJECT_DIR, PROJECT_ID, api
 import src.workflow as w
 
 
@@ -62,4 +62,3 @@ for dataset in datasets:
 
 file_info = upload_project_to_tf(api, project)
 w.workflow_output(api, file_info)
-app.shutdown()
