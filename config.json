@@ -21,6 +21,5 @@
     },
     "min_agent_version": "6.7.4",
     "min_instance_version": "6.10.0",
-    "main_script": "src/main.py",
-    "modal_template": "src/modal.html"
+    "main_script": "src/main.py"
 }
