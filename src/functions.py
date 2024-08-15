@@ -87,7 +87,7 @@ def label_to_ro_bbox(label: sly.Label, project_meta: sly.ProjectMeta):
     return ann_line
 
 
-def upload_project_to_tf(api, project):
+def upload_project_to_tf(api: sly.Api, project: sly.ProjectInfo) -> sly.api.file_api.FileInfo:
     full_archive_name = f"{str(project.id)}_{project.name}.tar"
     result_archive = os.path.join(STORAGE_DIR, full_archive_name)
     sly.fs.archive_directory(PROJECT_DIR, result_archive)
@@ -118,3 +118,4 @@ def upload_project_to_tf(api, project):
     api.task.set_output_archive(
         TASK_ID, file_info.id, full_archive_name, file_url=file_info.storage_path
     )
+    return file_info
