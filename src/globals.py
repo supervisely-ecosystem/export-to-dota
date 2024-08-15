@@ -24,8 +24,6 @@ SUPPORTED_GEOMETRY_TYPES = [
     sly.Rectangle,
 ]
 
-
-# STORAGE_DIR = sly.app.get_data_dir()
-STORAGE_DIR = "/sly-app-data"
+STORAGE_DIR = sly.app.get_data_dir()
 PROJECT_DIR = os.path.join(STORAGE_DIR, "dota")
 mkdir(PROJECT_DIR, True)
