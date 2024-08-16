@@ -1,25 +1,25 @@
 {
-    "name": "Export to DOTA",
-    "type": "app",
-    "version": "2.0.0",
-    "headless": true,
-    "description": "Export images in DOTA format and prepares downloadable archive",
-    "categories": [
-        "images",
-        "export"
-    ],
-    "docker_image": "supervisely/import-export:6.73.157",
-    "icon": "https://user-images.githubusercontent.com/115161827/203991592-de444a0d-3d7c-4c26-b575-6fa4ac020635.jpg",
-    "icon_cover": true,
-    "poster": "https://user-images.githubusercontent.com/115161827/203993840-5a170216-d7a2-4e45-a74a-4b4c856e5b2f.jpg",
-    "context_menu": {
-        "context_root": "Download as",
-        "target": [
-            "images_project",
-            "images_dataset"
-        ]
-    },
-    "min_agent_version": "6.7.4",
-    "min_instance_version": "6.10.0",
-    "main_script": "src/main.py"
+  "name": "Export to DOTA",
+  "type": "app",
+  "version": "2.0.0",
+  "headless": true,
+  "description": "Export images in DOTA format and prepares downloadable archive",
+  "categories": [
+    "images",
+    "export"
+  ],
+  "docker_image": "supervisely/import-export:6.73.160",
+  "icon": "https://user-images.githubusercontent.com/115161827/203991592-de444a0d-3d7c-4c26-b575-6fa4ac020635.jpg",
+  "icon_cover": true,
+  "poster": "https://user-images.githubusercontent.com/115161827/203993840-5a170216-d7a2-4e45-a74a-4b4c856e5b2f.jpg",
+  "context_menu": {
+    "context_root": "Download as",
+    "target": [
+      "images_project",
+      "images_dataset"
+    ]
+  },
+  "min_agent_version": "6.7.4",
+  "min_instance_version": "6.11.8",
+  "main_script": "src/main.py"
 }
