@@ -9,24 +9,24 @@
   <a href="#How-to-use">How To Use</a>
 </p>
 
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/export-to-dota)
-[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervise.ly/slack)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/export-to-dota)
+[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/export-to-dota)
-[![views](https://app.supervise.ly/img/badges/views/supervisely-ecosystem/export-to-dota.png)](https://supervise.ly)
-[![runs](https://app.supervise.ly/img/badges/runs/supervisely-ecosystem/export-to-dota.png)](https://supervise.ly)
+[![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/export-to-dota.png)](https://supervisely.com)
+[![runs](https://app.supervisely.com/img/badges/runs/supervisely-ecosystem/export-to-dota.png)](https://supervisely.com)
 
 </div>
 
 # Overview
 
-Converts project in [Supervisely](https://docs.supervise.ly/data-organization/00_ann_format_navi) format to [DOTA](https://captain-whu.github.io/DOTA/dataset.html) and prepares downloadable archive. 
+Converts project in [Supervisely](https://docs.supervisely.com/data-organization/00_ann_format_navi) format to [DOTA](https://captain-whu.github.io/DOTA/dataset.html) and prepares downloadable archive. 
 
 DOTA is [one of the formats](https://github.com/open-mmlab/mmrotate/tree/main/tools/data#data-preparation-for-rotation-detection) supported by [mmrotate](https://github.com/open-mmlab/mmrotate) ![GitHub Org's stars](https://img.shields.io/github/stars/open-mmlab/mmrotate?style=social)
 
 
 ## Preparation
 
-Project object classes shapes must be: `Polygon`, `Bitmap`, `Line`, `Rectangle` or `Any Shape` with any of the mentioned shapes, all other shapes will be ignored, and will not be presenting in resulted project. You can convert object classes shapes using [convert-class-shape](https://ecosystem.supervise.ly/apps/convert-class-shape) application.
+Project object classes shapes must be: `Polygon`, `Bitmap`, `Line`, `Rectangle` or `Any Shape` with any of the mentioned shapes, all other shapes will be ignored, and will not be presenting in resulted project. You can convert object classes shapes using [convert-class-shape](https://ecosystem.supervisely.com/apps/convert-class-shape) application.
 
 ## Output archive structure
 
