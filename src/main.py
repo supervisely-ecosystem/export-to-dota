@@ -40,7 +40,16 @@ def main():
         images_paths = [
             os.path.join(images_dir, img_info.name) for img_info in images_infos
         ]
-        anns = get_anns_list(api=api, ds_id=dataset.id, project_meta=project_meta)
+        da_progress = sly.tqdm_sly(
+            desc="Downloading annotations", total=len(images_ids)
+        )
+        anns = get_anns_list(
+            api=api,
+            ds_id=dataset.id,
+            img_ids=images_ids,
+            project_meta=project_meta,
+            progress_cb=da_progress,
+        )
         anns_paths = [
             os.path.join(ann_dir, f"{get_file_name(img_info.name)}.txt")
             for img_info in images_infos

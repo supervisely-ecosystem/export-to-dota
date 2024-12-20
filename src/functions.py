@@ -1,6 +1,6 @@
 import os
 from typing import List
-
+import asyncio
 import cv2
 import numpy as np
 import supervisely as sly
@@ -28,11 +28,32 @@ def convert_obj_classes_to_poly(project_meta: sly.ProjectMeta):
     return project_meta
 
 
-def get_anns_list(api: sly.Api, ds_id: int, project_meta: sly.ProjectMeta):
-    ann_infos = api.annotation.get_list(dataset_id=ds_id)
-    ann_jsons = [ann_info.annotation for ann_info in ann_infos]
+def get_anns_list(
+    api: sly.Api,
+    ds_id: int,
+    img_ids: List[int],
+    project_meta: sly.ProjectMeta,
+    progress_cb,
+):
+    async def fetch_annotations():
+        tasks = []
+        for batch in sly.batched(img_ids):
+            task = api.annotation.download_bulk_async(
+                dataset_id=ds_id, image_ids=batch, progress_cb=progress_cb
+            )
+            tasks.append(task)
+        ann_jsons_lists = await asyncio.gather(*tasks)
+        return ann_jsons_lists
+
+    loop = sly.utils.get_or_create_event_loop()
+    if loop.is_running():
+        future = asyncio.run_coroutine_threadsafe(fetch_annotations(), loop)
+        ann_jsons_lists = future.result()
+    else:
+        ann_jsons_lists = loop.run_until_complete(fetch_annotations())
+    ann_jsons = [ann_json for ann_jsons in ann_jsons_lists for ann_json in ann_jsons]
     anns = [
-        sly.Annotation.from_json(data=ann_json, project_meta=project_meta)
+        sly.Annotation.from_json(data=ann_json.annotation, project_meta=project_meta)
         for ann_json in ann_jsons
     ]
     return anns
@@ -87,14 +108,18 @@ def label_to_ro_bbox(label: sly.Label, project_meta: sly.ProjectMeta):
     return ann_line
 
 
-def upload_project_to_tf(api: sly.Api, project: sly.ProjectInfo) -> sly.api.file_api.FileInfo:
+def upload_project_to_tf(
+    api: sly.Api, project: sly.ProjectInfo
+) -> sly.api.file_api.FileInfo:
     full_archive_name = f"{str(project.id)}_{project.name}.tar"
     result_archive = os.path.join(STORAGE_DIR, full_archive_name)
     sly.fs.archive_directory(PROJECT_DIR, result_archive)
     sly.logger.info("Result directory is archived")
     upload_progress = []
     remote_archive_path = os.path.join(
-        sly.team_files.RECOMMENDED_EXPORT_PATH, f"export-to-dota/{TASK_ID}_{full_archive_name}")
+        sly.team_files.RECOMMENDED_EXPORT_PATH,
+        f"export-to-dota/{TASK_ID}_{full_archive_name}",
+    )
 
     def _print_progress(monitor, upload_progress):
         if len(upload_progress) == 0:
