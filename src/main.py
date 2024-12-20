@@ -12,8 +12,8 @@ from src.functions import (
 from src.globals import DATASET_ID, PROJECT_DIR, PROJECT_ID, api
 import src.workflow as w
 
-from tinytimer import Timer
 import asyncio
+
 
 @sly.handle_exceptions(has_ui=False)
 def main():
@@ -27,13 +27,8 @@ def main():
     else:
         datasets = api.dataset.get_list(project_id=PROJECT_ID)
         w.workflow_input(api, PROJECT_ID, type="project")
-    progress_ds = sly.Progress(message="Exporting datasets", total_cnt=len(datasets))
+    progress_ds = sly.tqdm_sly(desc="Exporting datasets", total=len(datasets))
 
-    if api.server_address.startswith("https://"):
-        semaphore = asyncio.Semaphore(100)
-    else:
-        semaphore = None
-        
     for dataset in datasets:
         dataset_dir = os.path.join(PROJECT_DIR, dataset.name)
         images_dir = os.path.join(dataset_dir, "images")
@@ -51,19 +46,18 @@ def main():
             for img_info in images_infos
         ]
 
-        with Timer() as t:
-            coro = api.image.download_paths_async(images_ids, images_paths, semaphore)
-            loop = sly.utils.get_or_create_event_loop()
-            if loop.is_running():
-                future = asyncio.run_coroutine_threadsafe(coro, loop)
-                future.result()
-            else:
-                loop.run_until_complete(coro)
-        sly.logger.info(
-            f"Downloading time: {t.elapsed:.4f} seconds per {len(images_ids)} images  ({t.elapsed/len(images_ids):.4f} seconds per image)"
+        di_progress = sly.tqdm_sly(desc="Downloading images", total=len(images_ids))
+        coro = api.image.download_paths_async(
+            images_ids, images_paths, progress_cb=di_progress
         )
+        loop = sly.utils.get_or_create_event_loop()
+        if loop.is_running():
+            future = asyncio.run_coroutine_threadsafe(coro, loop)
+            future.result()
+        else:
+            loop.run_until_complete(coro)
 
-        progress_img = sly.Progress(message="Processing images", total_cnt=len(images_ids))
+        progress_img = sly.tqdm_sly(desc="Processing images", total=len(images_ids))
         for batch_anns, batch_anns_paths in zip(
             sly.batched(anns),
             sly.batched(anns_paths),
@@ -73,11 +67,12 @@ def main():
                 anns=batch_anns,
                 project_meta=project_meta,
             )
-            progress_img.iters_done_report(len(batch_anns_paths))
-        progress_ds.iter_done_report()
+            progress_img(len(batch_anns_paths))
+        progress_ds(1)
 
     file_info = upload_project_to_tf(api, project)
     w.workflow_output(api, file_info)
+
 
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
