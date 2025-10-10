@@ -9,7 +9,7 @@
   <a href="#How-to-use">How To Use</a>
 </p>
 
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/export-to-dota)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](../../../../supervisely-ecosystem/export-to-dota)
 [![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/export-to-dota)
 [![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/export-to-dota.png)](https://supervisely.com)
@@ -26,7 +26,7 @@ DOTA is [one of the formats](https://github.com/open-mmlab/mmrotate/tree/main/to
 
 ## Preparation
 
-Project object classes shapes must be: `Polygon`, `Bitmap`, `Line`, `Rectangle` or `Any Shape` with any of the mentioned shapes, all other shapes will be ignored, and will not be presenting in resulted project. You can convert object classes shapes using [convert-class-shape](https://ecosystem.supervisely.com/apps/convert-class-shape) application.
+Project object classes shapes must be: `Polygon`, `Bitmap`, `Line`, `Rectangle` or `Any Shape` with any of the mentioned shapes, all other shapes will be ignored, and will not be presenting in resulted project. You can convert object classes shapes using [convert-class-shape](../../../../supervisely-ecosystem/convert-class-shape) application.
 
 ## Output archive structure
 
